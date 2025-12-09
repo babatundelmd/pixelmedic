@@ -1,0 +1,220 @@
+ .issue-card {
+      background: var(--surface-elevated, #1a1a24);
+      border-radius: 12px;
+      border: 1px solid var(--border-color, #3a3a4a);
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .issue-card:hover {
+      border-color: var(--border-hover, #4a4a5a);
+    }
+
+    .issue-card.critical {
+      border-left: 4px solid var(--error-color, #ef4444);
+    }
+
+    .issue-card.warning {
+      border-left: 4px solid var(--warning-color, #f59e0b);
+    }
+
+    .issue-card.suggestion {
+      border-left: 4px solid var(--info-color, #3b82f6);
+    }
+
+    .issue-card.expanded {
+      border-color: var(--accent-color, #6366f1);
+    }
+
+    .issue-header {
+      padding: 0;
+    }
+
+    .issue-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      color: inherit;
+    }
+
+    .issue-toggle:focus-visible {
+      outline: 2px solid var(--accent-color, #6366f1);
+      outline-offset: -2px;
+    }
+
+    .severity-badge {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .critical .severity-badge {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--error-color, #ef4444);
+    }
+
+    .warning .severity-badge {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--warning-color, #f59e0b);
+    }
+
+    .suggestion .severity-badge {
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--info-color, #3b82f6);
+    }
+
+    .issue-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .issue-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary, #f3f4f6);
+      margin: 0 0 4px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .issue-type {
+      font-size: 0.75rem;
+      color: var(--text-muted, #6b7280);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .expand-icon {
+      flex-shrink: 0;
+      color: var(--text-muted, #6b7280);
+      transition: transform 0.2s ease;
+    }
+
+    .issue-content {
+      padding: 0 16px 16px;
+      border-top: 1px solid var(--border-color, #3a3a4a);
+    }
+
+    .issue-section {
+      margin-top: 16px;
+    }
+
+    .section-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted, #6b7280);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 0 0 8px 0;
+    }
+
+    .section-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary, #9ca3af);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .fixes-section {
+      background: var(--surface-dim, #12121a);
+      margin: 16px -16px -16px;
+      padding: 16px;
+    }
+
+    .code-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .tab-button {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      background: var(--surface-elevated, #1a1a24);
+      color: var(--text-muted, #6b7280);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .tab-button:hover {
+      color: var(--text-secondary, #9ca3af);
+    }
+
+    .tab-button:focus-visible {
+      outline: 2px solid var(--accent-color, #6366f1);
+      outline-offset: 2px;
+    }
+
+    .tab-button.active {
+      background: var(--accent-color, #6366f1);
+      color: white;
+    }
+
+    .code-panel {
+      position: relative;
+      background: var(--surface-elevated, #1a1a24);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .code-block {
+      margin: 0;
+      padding: 16px;
+      padding-right: 80px;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: var(--text-primary, #f3f4f6);
+    }
+
+    .code-block code {
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      border: none;
+      border-radius: 6px;
+      background: var(--surface-dim, #12121a);
+      color: var(--text-muted, #6b7280);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .copy-button:hover {
+      background: var(--accent-color, #6366f1);
+      color: white;
+    }
+
+    .copy-button:focus-visible {
+      outline: 2px solid var(--accent-color, #6366f1);
+      outline-offset: 2px;
+    }

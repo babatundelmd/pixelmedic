@@ -1,0 +1,23 @@
+ <div class="annotated-container" role="img" [attr.aria-label]="'Screenshot with ' + issues().length + ' annotated issues'">
+      <img [src]="imageUrl()" alt="Analyzed screenshot" class="base-image" />
+      <div class="annotations-layer" aria-hidden="true">
+        @for (issue of issues(); track issue.id; let i = $index) {
+          <button
+            class="annotation-marker"
+            [class.critical]="issue.severity === 'critical'"
+            [class.warning]="issue.severity === 'warning'"
+            [class.suggestion]="issue.severity === 'suggestion'"
+            [class.selected]="selectedIssueId() === issue.id"
+            [style.left.%]="issue.location.x"
+            [style.top.%]="issue.location.y"
+            [style.width.%]="issue.location.width"
+            [style.height.%]="issue.location.height"
+            [attr.aria-label]="issue.severity + ' issue: ' + issue.title"
+            [attr.aria-pressed]="selectedIssueId() === issue.id"
+            (click)="issueSelected.emit(issue.id)"
+          >
+            <span class="marker-badge">{{ i + 1 }}</span>
+          </button>
+        }
+      </div>
+    </div>

@@ -1,0 +1,104 @@
+.annotated-container {
+      position: relative;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--surface-dim, #12121a);
+    }
+
+    .base-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .annotations-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .annotation-marker {
+      position: absolute;
+      border: 2px solid;
+      border-radius: 4px;
+      background: transparent;
+      cursor: pointer;
+      pointer-events: auto;
+      transition: all 0.2s ease;
+      padding: 0;
+      min-width: 24px;
+      min-height: 24px;
+    }
+
+    .annotation-marker.critical {
+      border-color: var(--error-color, #ef4444);
+      background: rgba(239, 68, 68, 0.15);
+    }
+
+    .annotation-marker.warning {
+      border-color: var(--warning-color, #f59e0b);
+      background: rgba(245, 158, 11, 0.15);
+    }
+
+    .annotation-marker.suggestion {
+      border-color: var(--info-color, #3b82f6);
+      background: rgba(59, 130, 246, 0.15);
+    }
+
+    .annotation-marker:hover,
+    .annotation-marker:focus-visible {
+      transform: scale(1.02);
+      z-index: 10;
+    }
+
+    .annotation-marker:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+
+    .annotation-marker.selected {
+      z-index: 20;
+      border-width: 3px;
+      box-shadow: 0 0 20px currentColor;
+    }
+
+    .annotation-marker.critical.selected {
+      box-shadow: 0 0 20px var(--error-color, #ef4444);
+    }
+
+    .annotation-marker.warning.selected {
+      box-shadow: 0 0 20px var(--warning-color, #f59e0b);
+    }
+
+    .annotation-marker.suggestion.selected {
+      box-shadow: 0 0 20px var(--info-color, #3b82f6);
+    }
+
+    .marker-badge {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .critical .marker-badge {
+      background: var(--error-color, #ef4444);
+    }
+
+    .warning .marker-badge {
+      background: var(--warning-color, #f59e0b);
+    }
+
+    .suggestion .marker-badge {
+      background: var(--info-color, #3b82f6);
+    }

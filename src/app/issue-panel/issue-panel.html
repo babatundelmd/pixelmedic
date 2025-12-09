@@ -1,0 +1,157 @@
+<article
+      class="issue-card"
+      [class.critical]="issue().severity === 'critical'"
+      [class.warning]="issue().severity === 'warning'"
+      [class.suggestion]="issue().severity === 'suggestion'"
+      [class.expanded]="isSelected()"
+      role="region"
+      [attr.aria-labelledby]="'issue-title-' + issue().id"
+    >
+      <header class="issue-header">
+        <button
+          class="issue-toggle"
+          [attr.aria-expanded]="isSelected()"
+          [attr.aria-controls]="'issue-content-' + issue().id"
+          (click)="toggleClick.emit()"
+        >
+          <span class="severity-badge" [attr.aria-label]="issue().severity + ' severity'">
+            @switch (issue().severity) {
+              @case ('critical') {
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+              }
+              @case ('warning') {
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+                </svg>
+              }
+              @default {
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                </svg>
+              }
+            }
+          </span>
+          <div class="issue-info">
+            <h3 [id]="'issue-title-' + issue().id" class="issue-title">{{ issue().title }}</h3>
+            <span class="issue-type">{{ issue().type }}</span>
+          </div>
+          <span class="expand-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline [attr.points]="isSelected() ? '18 15 12 9 6 15' : '6 9 12 15 18 9'" />
+            </svg>
+          </span>
+        </button>
+      </header>
+
+      @if (isSelected()) {
+        <div [id]="'issue-content-' + issue().id" class="issue-content">
+          <section class="issue-section">
+            <h4 class="section-title">What's wrong</h4>
+            <p class="section-text">{{ issue().description }}</p>
+          </section>
+
+          <section class="issue-section">
+            <h4 class="section-title">Why it matters</h4>
+            <p class="section-text">{{ issue().whyItMatters }}</p>
+          </section>
+
+          @if (hasAnyFix()) {
+            <section class="issue-section fixes-section">
+              <h4 class="section-title">Suggested fixes</h4>
+              
+              <div class="code-tabs" role="tablist" aria-label="Code fix tabs">
+                @if (issue().fix.html) {
+                  <button
+                    role="tab"
+                    [attr.aria-selected]="activeTab() === 'html'"
+                    [attr.aria-controls]="'tab-panel-html-' + issue().id"
+                    [id]="'tab-html-' + issue().id"
+                    class="tab-button"
+                    [class.active]="activeTab() === 'html'"
+                    (click)="activeTab.set('html')"
+                  >
+                    HTML
+                  </button>
+                }
+                @if (issue().fix.css) {
+                  <button
+                    role="tab"
+                    [attr.aria-selected]="activeTab() === 'css'"
+                    [attr.aria-controls]="'tab-panel-css-' + issue().id"
+                    [id]="'tab-css-' + issue().id"
+                    class="tab-button"
+                    [class.active]="activeTab() === 'css'"
+                    (click)="activeTab.set('css')"
+                  >
+                    CSS
+                  </button>
+                }
+                @if (issue().fix.angular) {
+                  <button
+                    role="tab"
+                    [attr.aria-selected]="activeTab() === 'angular'"
+                    [attr.aria-controls]="'tab-panel-angular-' + issue().id"
+                    [id]="'tab-angular-' + issue().id"
+                    class="tab-button"
+                    [class.active]="activeTab() === 'angular'"
+                    (click)="activeTab.set('angular')"
+                  >
+                    Angular
+                  </button>
+                }
+              </div>
+
+              <div class="code-panel">
+                @if (activeTab() === 'html' && issue().fix.html) {
+                  <div
+                    role="tabpanel"
+                    [id]="'tab-panel-html-' + issue().id"
+                    [attr.aria-labelledby]="'tab-html-' + issue().id"
+                  >
+                    <pre class="code-block"><code>{{ issue().fix.html }}</code></pre>
+                  </div>
+                }
+                @if (activeTab() === 'css' && issue().fix.css) {
+                  <div
+                    role="tabpanel"
+                    [id]="'tab-panel-css-' + issue().id"
+                    [attr.aria-labelledby]="'tab-css-' + issue().id"
+                  >
+                    <pre class="code-block"><code>{{ issue().fix.css }}</code></pre>
+                  </div>
+                }
+                @if (activeTab() === 'angular' && issue().fix.angular) {
+                  <div
+                    role="tabpanel"
+                    [id]="'tab-panel-angular-' + issue().id"
+                    [attr.aria-labelledby]="'tab-angular-' + issue().id"
+                  >
+                    <pre class="code-block"><code>{{ issue().fix.angular }}</code></pre>
+                  </div>
+                }
+                <button
+                  class="copy-button"
+                  [attr.aria-label]="'Copy ' + activeTab() + ' code to clipboard'"
+                  (click)="copyCode()"
+                >
+                  @if (copied()) {
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    Copied!
+                  } @else {
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    Copy
+                  }
+                </button>
+              </div>
+            </section>
+          }
+        </div>
+      }
+    </article>

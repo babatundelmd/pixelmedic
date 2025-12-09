@@ -1,0 +1,131 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+.upload-zone {
+    position: relative;
+    min-height: 320px;
+    border: 2px dashed var(--border-color, #3a3a4a);
+    border-radius: 16px;
+    background: var(--surface-elevated, #1a1a24);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.upload-zone:hover,
+.upload-zone:focus-visible {
+    border-color: var(--accent-color, #6366f1);
+    background: var(--surface-hover, #22222e);
+    outline: none;
+}
+
+.upload-zone:focus-visible {
+    box-shadow: 0 0 0 3px var(--focus-ring, rgba(99, 102, 241, 0.4));
+}
+
+.upload-zone.dragging {
+    border-color: var(--accent-color, #6366f1);
+    background: var(--surface-active, #2a2a3a);
+    transform: scale(1.01);
+}
+
+.upload-zone.has-image {
+    border-style: solid;
+    min-height: auto;
+}
+
+.upload-content {
+    text-align: center;
+    padding: 48px 24px;
+}
+
+.upload-icon {
+    color: var(--text-muted, #6b7280);
+    margin-bottom: 16px;
+    transition: transform 0.3s ease;
+}
+
+.upload-zone:hover .upload-icon,
+.upload-zone.dragging .upload-icon {
+    transform: translateY(-4px);
+    color: var(--accent-color, #6366f1);
+}
+
+.upload-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary, #f3f4f6);
+    margin: 0 0 8px 0;
+}
+
+.upload-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary, #9ca3af);
+    margin: 0 0 16px 0;
+}
+
+.upload-hint {
+    font-size: 0.8rem;
+    color: var(--text-muted, #6b7280);
+    margin: 0;
+    padding: 8px 16px;
+    background: var(--surface-dim, #12121a);
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.preview-container {
+    position: relative;
+    width: 100%;
+}
+
+.preview-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 14px;
+}
+
+.preview-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    border-radius: 14px;
+}
+
+.upload-zone:hover .preview-overlay,
+.upload-zone:focus-visible .preview-overlay {
+    opacity: 1;
+}
+
+.change-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: white;
+    padding: 12px 24px;
+    background: var(--accent-color, #6366f1);
+    border-radius: 8px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
