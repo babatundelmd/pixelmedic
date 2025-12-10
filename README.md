@@ -41,7 +41,7 @@ PixelMedic is a modern Angular application powered by Google Gemini AI that anal
 
 ```bash
 # Clone or download the project
-cd ui-debugger
+cd pixelmedic
 
 # Install dependencies
 npm install
@@ -81,7 +81,7 @@ ui-debugger/
 
 ---
 
-## 🅰️ Angular Features & Best Practices
+## Angular Features & Best Practices
 
 This project showcases modern Angular 19+ patterns and best practices. Below is a comprehensive breakdown of every Angular feature used.
 
@@ -93,7 +93,6 @@ All components are standalone (the default in Angular 19+), eliminating the need
 
 @Component({
   selector: 'app-image-upload',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `...`,
   styles: `...`,
 })
@@ -592,7 +591,6 @@ MIT © 2024
 
 - [Google Gemini](https://ai.google.dev/) for the multimodal AI capabilities
 - [Angular Team](https://angular.dev/) for the incredible framework
-- [JetBrains Mono](https://www.jetbrains.com/lp/mono/) for the beautiful monospace font
 
 ---
 
