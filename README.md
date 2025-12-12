@@ -5,7 +5,7 @@
 PixelMedic is a modern Angular application powered by Google Gemini AI that analyzes screenshots of your UI and instantly highlights layout, accessibility, and design issues. It explains what's wrong, why it matters, and generates ready-to-use HTML, CSS, and Angular code fixes.
 
 ![Angular](https://img.shields.io/badge/Angular-20+-dd0031?style=flat-square&logo=angular)
-![Gemini](https://img.shields.io/badge/Gemini-2.0_Flash-4285f4?style=flat-square&logo=google)
+![Gemini](https://img.shields.io/badge/Gemini-3.0-4285f4?style=flat-square&logo=google)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6?style=flat-square&logo=typescript)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
