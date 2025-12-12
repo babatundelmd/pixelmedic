@@ -16,7 +16,7 @@ PixelMedic is a modern Angular application powered by Google Gemini AI that anal
 | Feature | Description |
 |---------|-------------|
 | 📸 **Screenshot Upload** | Drag & drop or click to upload PNG, JPG, WebP (up to 10MB) |
-| 🤖 **AI Analysis** | Gemini 2.0 Flash scans for layout, accessibility & design issues |
+| 🤖 **AI Analysis** | gemini-3-pro-preview scans for layout, accessibility & design issues |
 | 🎯 **Visual Annotations** | Clickable markers highlight issues directly on your screenshot |
 | 📊 **Quality Score** | Overall UI rating from 0-100 with visual ring indicator |
 | 🔧 **Code Fixes** | Ready-to-use HTML, CSS, and Angular patches with copy button |
