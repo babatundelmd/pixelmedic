@@ -1,6 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { GoogleGenAI } from '@google/genai';
-import { environment } from './environments/environment.prod';
 
 export interface UIIssue {
   id: string;
